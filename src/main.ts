@@ -1,24 +1,37 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import "./style.css";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+type IPerson = {
+  name: string;
+  age: number;
+  greet(phrase: string): void;
+};
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+let user: IPerson;
+
+user = {
+  name: "Anthony",
+  age: 21,
+  greet(phrase) {
+    console.log(phrase + " " + this.name);
+  },
+};
+
+user.greet("Вітання всім, я");
+
+function firstElement<T>(arr: T[]): T {
+  return arr[0];
+}
+
+let numbers = [1, 2, 3, 4, 5];
+let firstNum = firstElement(numbers);
+
+let strings = ["a", "b", "c", "d"];
+let firstStr = firstElement(strings);
+
+console.log(firstNum);
+console.log(firstStr);
+
+type Animal = { id: number; name: string; type: string; age: number };
+const dog: Pick<Animal, "name" | "age"> = { name: "Rex", type: "Dog", age: 5 };
+
+console.log(dog);
